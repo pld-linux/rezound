@@ -1,0 +1,12 @@
+--- rezound-0.5.1beta/src/misc/CNestedDataFile/cfg.y.orig	Wed Jul 31 17:29:17 2002
++++ rezound-0.5.1beta/src/misc/CNestedDataFile/cfg.y	Tue Jan 28 22:05:17 2003
+@@ -73,8 +73,7 @@
+ 
+ %expect 1
+ 
+-%union cfg_parse_union
+-{
++%union cfg_parse_union {
+ 	char *				stringValue;
+ 	double				floatValue;
+ 	int 				intValue;
