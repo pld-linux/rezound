@@ -1,0 +1,10 @@
+--- rezound-0.8.1beta/src/misc/CNestedDataFile/cfg.l.orig	2003-06-27 01:26:16.000000000 +0200
++++ rezound-0.8.1beta/src/misc/CNestedDataFile/cfg.l	2003-07-04 23:32:04.000000000 +0200
+@@ -37,7 +37,6 @@
+ #define FLEX_VERSION (YY_FLEX_MAJOR_VERSION*100000+YY_FLEX_MINOR_VERSION*1000+YY_FLEX_SUBMINOR_VERSION)
+ 
+ bool started;
+-int yylineno; 
+ 
+ static stack<string> filenameStack;
+ static stack<int> linenoStack;

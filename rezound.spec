@@ -14,6 +14,7 @@ Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-cpath_h.patch
 Patch1:		%{name}-opt.patch
+Patch2:		%{name}-flex.patch
 URL:		http://rezound.sourceforge.net/
 BuildRequires:	audiofile-devel >= 0.2.3
 BuildRequires:	autoconf
@@ -43,14 +44,15 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %setup -q -n %{name}-%{version}beta
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
-export OPTFLAGS="%{rpmcflags}"
 %{__libtoolize}
 %{__aclocal} -I config/m4
 %{__autoconf}
 %{__automake}
 %configure \
+	OPTFLAGS="%{rpmcflags}" \
 	%{?_with_jack:--enable-jack}
 	
 %{__make}
@@ -64,10 +66,12 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README docs/{AUTHORS,Features.txt,FrontendFoxFeatures.txt,NEWS,TODO*}
 %attr(755,root,root) %{_bindir}/*
