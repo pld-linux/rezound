@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Rezound
+Comment=Audio file editor
+Comment[pl]=Edytor plików audio
+Exec=/usr/bin/rezound
+Icon=
+Terminal=0
+Type=Application
+Categories=Application;AudioVideo;
