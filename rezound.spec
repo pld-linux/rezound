@@ -50,7 +50,7 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %configure \
 	OPTFLAGS="%{rpmcflags}" \
 	--enable-jack
-	
+
 %{__make}
 
 %install
