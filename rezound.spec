@@ -5,18 +5,15 @@
 Summary:	ReZound - graphical audio file editor
 Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
 Name:		rezound
-Version:	0.9.0
-Release:	0.beta.4
+Version:	0.10.0
+Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
-# Source0-md5:	86d8c8e689ec9f28dd26521408164446
+# Source0-md5:	607740eca99e36c1f1ca1d01b91cb5bf
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-opt.patch
-Patch1:		%{name}-flex.patch
-Patch2:		%{name}-fox.patch
-Patch3:		%{name}-gcc.patch
 URL:		http://rezound.sourceforge.net/
 BuildRequires:	audiofile-devel >= 1:0.2.3
 BuildRequires:	autoconf
@@ -48,9 +45,6 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %prep
 %setup -q -n %{name}-%{version}beta
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 %{__libtoolize}
