@@ -319,3 +319,79 @@
  			wdroControl->setFont(textFont);
  			wdroControl->setTipText(_("When Data Runs Out ..."));
  				// these have to maintain the order in CPluginMapping::RInputDesc::WhenDataRunsOut because the index ends up being the value of that enum
+--- rezound-0.9.0beta/src/frontend_fox/Makefile.am.orig	2003-10-25 08:35:16.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/Makefile.am	2004-06-19 22:53:23.352629744 +0200
+@@ -107,14 +107,14 @@
+ 	$(top_builddir)/src/misc/CNestedDataFile/libmiscCN.la \
+ 	$(top_builddir)/src/PoolFile/libPoolFile.la
+ 
+-rezound_LDADD=$(_rezound_LDADD) @FOX_1_1_LIBS@ @FOX_LIBS@
++rezound_LDADD=$(_rezound_LDADD) @FOX_1_2_LIBS@ @FOX_LIBS@
+ 
+ ## if I don't do this, automake leaves out @abc@ vars when creating the rezound_DEPENDENCES value
+ ## so changes to the LADSPA lib (that may or may not be built) don't cause a re-link
+ rezound_DEPENDENCIES=$(_rezound_LDADD)
+ 
+ 
+-AM_CXXFLAGS=@FOX_1_1_CXXFLAGS@ @FOX_CXXFLAGS@
++AM_CXXFLAGS=@FOX_1_2_CXXFLAGS@ @FOX_CXXFLAGS@
+ 
+ noinst_HEADERS=\
+ 	fox_compat.h \
+--- rezound-0.9.0beta/src/frontend_fox/fox_compat.h.orig	2003-10-28 17:02:06.000000000 +0100
++++ rezound-0.9.0beta/src/frontend_fox/fox_compat.h	2004-06-19 22:54:00.872925792 +0200
+@@ -6,9 +6,9 @@
+ #if defined(HAVE_LIBFOX)
+ 	#include <fox/fx.h>
+ 	#include <fox/fxkeys.h>
+-#elif defined(HAVE_LIBFOX_1_1)
+-	#include <fox-1.1/fx.h>
+-	#include <fox-1.1/fxkeys.h>
++#elif defined(HAVE_LIBFOX_1_2)
++	#include <fox-1.2/fx.h>
++	#include <fox-1.2/fxkeys.h>
+ #else
+ 	#error no HAVE_LIBFOX defined
+ #endif
+--- rezound-0.9.0beta/configure.ac.orig	2004-06-19 22:44:56.095744000 +0200
++++ rezound-0.9.0beta/configure.ac	2004-06-19 22:52:35.806857800 +0200
+@@ -574,14 +574,14 @@
+ # This is a check for a class in a C++ library. To pinpoint the specific version we need we could change what class is linked.
+ # it sets $1_CXXFLAGS and $1_LIBS to either something useful or nothing
+ 	# need to pass something that says not to error if it's not found so we can continue looking for just libFOX
+-ajv_CXX_CHECK_LIB(FOX-1.1,FXApp,fox-1.1/fx.h,[http://fox-toolkit.org],[],false)
+-if test -z "$FOX_1_1_LIBS"; then
+-	# libFOX-1.1 was not found, now try libFOX
++ajv_CXX_CHECK_LIB(FOX-1.2,FXApp,fox-1.2/fx.h,[http://fox-toolkit.org],[],false)
++if test -z "$FOX_1_2_LIBS"; then
++	# libFOX-1.2 was not found, now try libFOX
+ 	ajv_CXX_CHECK_LIB(FOX,FXApp,fox/fx.h,[http://fox-toolkit.org],[],true)
+ fi
+ 
+-AC_SUBST(FOX_1_1_CXXFLAGS)
+-AC_SUBST(FOX_1_1_LIBS)
++AC_SUBST(FOX_1_2_CXXFLAGS)
++AC_SUBST(FOX_1_2_LIBS)
+ AC_SUBST(FOX_CXXFLAGS)
+ AC_SUBST(FOX_LIBS)
+ 
+@@ -645,7 +645,7 @@
+ 		AC_MSG_NOTICE([*** NOTICE *** stand-alone build enabled -- now static versions of all the dependancy libraries will be required.  If final linking fails, then make sure a static version of the failed library is installed.])
+ 
+ 		# warn about needing static libs if using FOX and statically linking
+-		if test "$FOX_LIBS" != "" -o "$FOX_1_1_LIBS" != "" ; then
++		if test "$FOX_LIBS" != "" -o "$FOX_1_2_LIBS" != "" ; then
+ 			AC_MSG_NOTICE([*** NOTICE *** since static linking is enabled, FOX will require static versions of libjpeg, libpng, libtiff, XFree86-libs, and maybe others (Also, I have found it necessary to configure FOX as: "CPPFLAGS=-DNO_XIM configure --with-opengl=no" when statically linking)])
+ 		fi
+ 	]
+--- rezound-0.9.0beta/src/frontend_fox/FXPluginRoutingParamValue.h.orig	2003-10-22 07:11:24.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/FXPluginRoutingParamValue.h	2004-06-20 11:12:14.412284296 +0200
+@@ -24,8 +24,6 @@
+ #include "../../config/common.h"
+ #include "fox_compat.h"
+ 
+-#include <fox/fx.h>
+-
+ #include <string>
+ #include <vector>
+ #include <utility>
