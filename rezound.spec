@@ -6,6 +6,7 @@ Release:	0.beta.2
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
+# Source0-md5:	85add819527aa365bb4cc7fd2c690f8b
 Patch0:		%{name}-fox-update.patch
 Patch1:		%{name}-opt.patch
 URL:		http://rezound.sourceforge.net/
