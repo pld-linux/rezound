@@ -1,0 +1,10 @@
+--- rezound-0.5.1beta/configure.in.orig	2002-10-27 05:31:52.000000000 +0100
++++ rezound-0.5.1beta/configure.in	2003-05-07 21:10:02.000000000 +0200
+@@ -41,7 +41,6 @@
+ 
+ dnl AC_PROG_CXX automatically sets CXXFLAGS to -g -O2 if g++ is c++ compiler
+ dnl and CXXFLAGS hasn't been set, so by setting CXXFLAGS, we can avoid this.
+-CXXFLAGS=
+ AC_PROG_CXX
+ 
+ dnl These are some custom checks to see if cc accepts some extra warning flags
