@@ -1,0 +1,80 @@
+--- rezound-0.9.0beta/src/PoolFile/TPoolFile.cpp.orig	2003-09-26 23:23:16.000000000 +0200
++++ rezound-0.9.0beta/src/PoolFile/TPoolFile.cpp	2004-06-20 10:06:33.750355968 +0200
+@@ -156,7 +156,10 @@
+ }
+ 
+ template<class l_addr_t,class p_addr_t>
+-	TPoolFile<l_addr_t,p_addr_t>::TPoolFile(const TPoolFile<l_addr_t,p_addr_t> &src)
++	TPoolFile<l_addr_t,p_addr_t>::TPoolFile(const TPoolFile<l_addr_t,p_addr_t> &src) :
++	maxBlockSize(0),
++	maxLogicalAddress(0),
++	maxPhysicalAddress(0)
+ {
+ 	throw runtime_error(string(__func__)+" -- copy constructor invalid");
+ }
+--- rezound-0.9.0beta/src/frontend_fox/CActionMenuCommand.h.orig	2003-10-07 20:39:32.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/CActionMenuCommand.h	2004-06-20 11:06:07.336088360 +0200
+@@ -65,7 +65,7 @@
+ 	};
+ 
+ protected:
+-	CActionMenuCommand() {}
++	CActionMenuCommand() : actionFactory(NULL) {}
+ 
+ private:
+ 	AActionFactory * const actionFactory;
+--- rezound-0.9.0beta/src/frontend_fox/FXModalDialogBox.h.orig	2003-10-07 20:39:33.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/FXModalDialogBox.h	2004-06-20 11:08:56.535366160 +0200
+@@ -66,7 +66,7 @@
+ 	const string getOrigTitle() const;
+ 
+ protected:
+-	FXModalDialogBox() {}
++	FXModalDialogBox() : showType(stRememberSizeAndPosition) {}
+ 
+ 	FXPacker *getFrame();
+ 	FXPacker *getButtonFrame();
+--- rezound-0.9.0beta/src/frontend_fox/FXTextParamValue.h.orig	2003-10-07 20:39:33.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/FXTextParamValue.h	2004-06-20 11:15:00.072100176 +0200
+@@ -68,7 +68,7 @@
+ 
+ 
+ protected:
+-	FXTextParamValue() {}
++	FXTextParamValue() : isNumeric(false) {}
+ 
+ private:
+ 	const string name;
+--- rezound-0.9.0beta/src/frontend_fox/FXDiskEntityParamValue.h.orig	2003-10-07 20:39:32.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/FXDiskEntityParamValue.h	2004-06-20 11:14:21.953895024 +0200
+@@ -75,7 +75,7 @@
+ 
+ 
+ protected:
+-	FXDiskEntityParamValue() {}
++	FXDiskEntityParamValue() : entityType(detAudioFilename) {}
+ 
+ private:
+ 	const string name;
+--- rezound-0.9.0beta/src/frontend_fox/CSoundWindow.h.orig	2003-10-07 20:39:32.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/CSoundWindow.h	2004-06-20 11:57:32.598057248 +0200
+@@ -155,7 +155,7 @@
+ 
+ protected:
+ 
+-	CSoundWindow(){}
++	CSoundWindow() : firstTimeShowing(false), closing(false), loadedSound(NULL) {}
+ 
+ private:
+ 
+--- rezound-0.9.0beta/src/frontend_fox/CMetersWindow.cpp.orig	2003-10-07 20:39:32.000000000 +0200
++++ rezound-0.9.0beta/src/frontend_fox/CMetersWindow.cpp	2004-06-20 12:08:41.093430504 +0200
+@@ -647,7 +647,7 @@
+ 	};
+ 
+ protected:
+-	CStereoPhaseMeter() { }
++	CStereoPhaseMeter() : samplingNFrames(0), samplingNChannels(0), samplingLeftChannel(0), samplingRightChannel(0) { }
+ 
+ private:
+ 	FXPacker *canvasFrame;
