@@ -5,7 +5,7 @@ Version:	0.5.1
 Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Sound
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/rezound/%{name}-%{version}beta.tar.gz
+Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
 Patch0:		%{name}-bison.patch
 URL:		http://rezound.sourceforge.net/
 BuildRequires:	audiofile-devel >= 0.2.3
