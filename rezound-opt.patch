@@ -1,10 +1,12 @@
---- rezound-0.5.1beta/configure.in.orig	2002-10-27 05:31:52.000000000 +0100
-+++ rezound-0.5.1beta/configure.in	2003-05-07 21:10:02.000000000 +0200
-@@ -41,7 +41,6 @@
+diff -aurN rezound-0.8.1beta.orig/configure.ac rezound-0.8.1beta/configure.ac
+--- rezound-0.8.1beta.orig/configure.ac	2003-06-27 01:26:16.000000000 +0200
++++ rezound-0.8.1beta/configure.ac	2003-06-27 22:23:04.000000000 +0200
+@@ -72,7 +72,7 @@
+ ajv_CXX_FLAG(-Wno-unused-function)
+ ajv_CXX_FLAG(-Wno-unused-variable)
+ ajv_CXX_FLAG(-Wno-unused)
+-
++ajv_CXX_FLAG($OPTFLAGS)
  
- dnl AC_PROG_CXX automatically sets CXXFLAGS to -g -O2 if g++ is c++ compiler
- dnl and CXXFLAGS hasn't been set, so by setting CXXFLAGS, we can avoid this.
--CXXFLAGS=
- AC_PROG_CXX
  
- dnl These are some custom checks to see if cc accepts some extra warning flags
+ 
