@@ -1,0 +1,14 @@
+--- rezound-0.9.0beta/src/frontend_fox/custom_cursors.h.orig	2002-12-25 10:03:28.000000000 +0100
++++ rezound-0.9.0beta/src/frontend_fox/custom_cursors.h	2004-01-15 22:55:45.472211144 +0100
+@@ -38,9 +38,9 @@
+ };
+ 
+ 
+-static void *bytesToBits(const char *bytes,int bytesLength)
++static FXuchar *bytesToBits(const char *bytes,int bytesLength)
+ {
+-	char *bits=new char[(bytesLength/8)+1];
++	FXuchar *bits=new FXuchar[(bytesLength/8)+1];
+ 	for(int t=0;t<bytesLength/8+1;t++)
+ 		bits[t]=0; 
+ 	for(int t=0;t<bytesLength;t++)
