@@ -1,8 +1,12 @@
+#
+# Conditional build:
+%bcond_without	jack	# without JACK support
+#
 Summary:	ReZound - graphical audio file editor
 Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
 Name:		rezound
 Version:	0.8.3
-Release:	0.beta.1
+Release:	0.beta.2
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
@@ -19,7 +23,7 @@ BuildRequires:	fftw-devel >= 2.1.3
 BuildRequires:	flac-devel >= 1.1.0
 BuildRequires:	flex
 BuildRequires:	fox-devel >= 1.1.25
-BuildRequires:	jack-audio-connection-kit-devel
+%{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libvorbis-devel
 Requires:	fox >= 1.1.25
@@ -49,7 +53,7 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %{__automake}
 %configure \
 	OPTFLAGS="%{rpmcflags}" \
-	--enable-jack
+	%{?with_jack:--enable-jack}
 
 %{__make}
 
