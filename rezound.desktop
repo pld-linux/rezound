@@ -7,5 +7,5 @@ Exec=rezound
 Icon=rezound.png
 Terminal=false
 Type=Application
-Categories=Audio;
+Categories=Audio;Recorder;
 # vi: encoding=utf-8
