@@ -17,7 +17,7 @@ Patch0:		%{name}-opt.patch
 Patch1:		%{name}-flex.patch
 Patch2:		%{name}-fox.patch
 URL:		http://rezound.sourceforge.net/
-BuildRequires:	audiofile-devel >= 0.2.3
+BuildRequires:	audiofile-devel >= 1:0.2.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison >= 1.875-3
