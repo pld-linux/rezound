@@ -1,23 +1,31 @@
+#
+# Conditional build:
+# _with_jack		- build with JACK support
+#
 Summary:	ReZound - graphical audio file editor
 Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
 Name:		rezound
-Version:	0.7.0
-Release:	0.beta.2
+Version:	0.8.1
+Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
-# Source0-md5:	85add819527aa365bb4cc7fd2c690f8b
-Patch0:		%{name}-fox-update.patch
+# Source0-md5:	ed3beadc60620fc84743c9f1582e6bd9
+Source1:	%{name}.desktop
+Patch0:		%{name}-cpath_h.patch
 Patch1:		%{name}-opt.patch
 URL:		http://rezound.sourceforge.net/
 BuildRequires:	audiofile-devel >= 0.2.3
 BuildRequires:	autoconf
 BuildRequires:	bison >= 1.875-3
 BuildRequires:	fftw-devel >= 2.1.3
+BuildRequires:	flac-devel >= 1.1.0
 BuildRequires:	flex
 BuildRequires:	fox-devel >= 1.1.25
+%{?_with_jack:BuildRequires:	jack-audio-connection-kit-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libvorbis-devel
+Requires:	lame
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # not used, but must be here because of GL-enabled fox
@@ -37,19 +45,24 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %patch1 -p1
 
 %build
+export OPTFLAGS="%{rpmcflags}"
 %{__libtoolize}
 %{__aclocal} -I config/m4
 %{__autoconf}
 %{__automake}
-%configure
-
+%configure \
+	%{?_with_jack:--enable-jack}
+	
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -59,3 +72,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc README docs/{AUTHORS,Features.txt,FrontendFoxFeatures.txt,NEWS,TODO*}
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/rezound
+%{_desktopdir}/%{name}.desktop
