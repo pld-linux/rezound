@@ -6,7 +6,7 @@ Summary:	ReZound - graphical audio file editor
 Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
 Name:		rezound
 Version:	0.9.0
-Release:	0.beta.3
+Release:	0.beta.4
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
@@ -16,6 +16,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-flex.patch
 Patch2:		%{name}-fox.patch
+Patch3:		%{name}-gcc.patch
 URL:		http://rezound.sourceforge.net/
 BuildRequires:	audiofile-devel >= 1:0.2.3
 BuildRequires:	autoconf
@@ -24,17 +25,17 @@ BuildRequires:	bison >= 1.875-3
 BuildRequires:	fftw-devel >= 2.1.3
 BuildRequires:	flac-devel >= 1.1.0
 BuildRequires:	flex
-BuildRequires:	fox-devel >= 1.1.46
+BuildRequires:	fox-devel >= 1.2
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
-Requires:	fox >= 1.1.46
+Requires:	fox >= 1.2
 Requires:	lame
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # not used, but must be here because of GL-enabled fox
-%define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libFOX-1.1.so.*
+%define 	_noautoreqdep	libGL.so.1 libGLU.so.1
 
 %description
 ReZound aims to be a stable, open source, and graphical audio file
@@ -49,11 +50,13 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal} -I config/m4
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	OPTFLAGS="%{rpmcflags}" \
