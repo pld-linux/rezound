@@ -1,24 +1,28 @@
 #
 # Conditional build:
+%bcond_without	alsa	# without ALSA support
 %bcond_without	jack	# without JACK support
 #
 Summary:	ReZound - graphical audio file editor
 Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
 Name:		rezound
-Version:	0.11.1
-Release:	0.beta.2
+Version:	0.12.0
+Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
-# Source0-md5:	3da346718a3ec77a4357c2bf1ab734bf
+# Source0-md5:	3a47c848da6093f8d213d4529e3cdec3
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-opt.patch
 URL:		http://rezound.sourceforge.net/
+%{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0}
 BuildRequires:	audiofile-devel >= 1:0.2.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison >= 1.875-3
+# libFLAC,libFLAC++
+BuildRequires:	flac-devel
 BuildRequires:	fftw-devel >= 2.1.3
 BuildRequires:	flac-devel >= 1.1.0
 BuildRequires:	flex
@@ -27,6 +31,8 @@ BuildRequires:	fox-devel >= 1.2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
+BuildRequires:	pkgconfig >= 1:0.9.0
+BuildRequires:	soundtouch-devel >= 1.3.0
 Requires:	fox >= 1.2
 Requires:	lame
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +60,9 @@ d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
 %{__automake}
 %configure \
 	OPTFLAGS="%{rpmcflags}" \
-	--%{?with_jack:en}%{!?with_jack:dis}able-jack
+	--%{?with_alsa:en}%{!?with_alsa:dis}able-alsa \
+	--%{?with_jack:en}%{!?with_jack:dis}able-jack \
+	--disable-portaudio
 
 %{__make}
 
