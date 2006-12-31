@@ -1,0 +1,12 @@
+--- rezound-0.12.2beta/src/backend/settings.cpp.orig	2005-02-14 09:08:54.000000000 +0100
++++ rezound-0.12.2beta/src/backend/settings.cpp	2006-12-31 12:13:05.572701165 +0100
+@@ -157,9 +157,6 @@
+ 			printf("using environment variable $REZ_SHARE_DIR='%s' to override normal setting for share data direcory\n",rezShareEnvVar);
+ 			gSysDataDirectory=rezShareEnvVar;
+ 		}
+-		// next try the source directory where the code was built
+-		else if(CPath(SOURCE_DIR"/share").exists())
+-			gSysDataDirectory=SOURCE_DIR"/share";
+ 		// next try the registry setting
+ 		else if(gSettingsRegistry->keyExists("shareDirectory") && CPath(gSettingsRegistry->getValue<string>("shareDirectory")).exists())
+ 			gSysDataDirectory=gSettingsRegistry->getValue<string>("shareDirectory");
