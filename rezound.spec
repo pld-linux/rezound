@@ -4,7 +4,7 @@
 %bcond_without	jack	# without JACK support
 #
 Summary:	ReZound - graphical audio file editor
-Summary(pl):	ReZound - graficzny edytor plików d¼wiêkowych
+Summary(pl.UTF-8):   ReZound - graficzny edytor plikÃ³w dÅºwiÄ™kowych
 Name:		rezound
 Version:	0.12.2
 Release:	0.beta.2
@@ -47,9 +47,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 ReZound aims to be a stable, open source, and graphical audio file
 editor primarily for but not limited to the Linux operating system.
 
-%description -l pl
-ReZound ma staæ siê stabilnym, otwartym, graficznym edytorem plików
-d¼wiêkowych g³ównie, choæ nie tylko, dla systemu Linux.
+%description -l pl.UTF-8
+ReZound ma staÄ‡ siÄ™ stabilnym, otwartym, graficznym edytorem plikÃ³w
+dÅºwiÄ™kowych gÅ‚Ã³wnie, choÄ‡ nie tylko, dla systemu Linux.
 
 %prep
 %setup -q -n %{name}-%{version}beta
