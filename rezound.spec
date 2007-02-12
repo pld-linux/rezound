@@ -4,7 +4,7 @@
 %bcond_without	jack	# without JACK support
 #
 Summary:	ReZound - graphical audio file editor
-Summary(pl.UTF-8):   ReZound - graficzny edytor plików dźwiękowych
+Summary(pl.UTF-8):	ReZound - graficzny edytor plików dźwiękowych
 Name:		rezound
 Version:	0.12.2
 Release:	0.beta.2
