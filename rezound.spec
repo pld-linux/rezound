@@ -11,7 +11,7 @@ Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://dl.sourceforge.net/rezound/%{name}-%{version}beta.tar.gz
-# Source0-md5:	acbe0d885643081db1c6b6e93d89f4b2
+# Source0-md5:	df109c9d9ad6d27214a7417df583115d
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-opt.patch
