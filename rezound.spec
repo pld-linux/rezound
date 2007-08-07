@@ -24,8 +24,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison >= 1.875-3
 BuildRequires:	fftw-devel >= 2.1.5-4
-# libFLAC,libFLAC++
-BuildRequires:	flac-devel >= 1.1.3
+BuildRequires:	flac-c++-devel >= 1.1.3
 BuildRequires:	flex
 BuildRequires:	fox-devel >= 1.2
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
