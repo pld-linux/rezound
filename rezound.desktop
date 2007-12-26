@@ -1,10 +1,9 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Rezound
 Comment=Audio file editor
 Comment[pl]=Edytor plików audio
 Exec=rezound
-Icon=rezound.png
+Icon=rezound
 Terminal=false
 Type=Application
 Categories=Audio;Recorder;
